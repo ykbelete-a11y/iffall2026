@@ -1,0 +1,29 @@
+/* Responsive Design Introduction - my stylesheet */
+
+/* Base font size, larger on wider screens */
+html { font-size: 12pt; }
+
+@media (min-width: 640px) {
+	html { font-size: 16pt; }
+}
+
+/* Keep images inside their containers */
+img { max-width: 100%; }
+
+/* Centered content column with limits instead of a fixed width */
+body {
+	margin-left: auto;
+	margin-right: auto;
+	width: 90%;
+	max-width: 40rem;
+}
+
+/* Side-by-side columns at 640px and wider */
+@media (min-width: 640px) {
+	.two-columns-example {
+		display: flex;
+	}
+	.two-columns-example > * {
+		width: 50%;
+	}
+}
