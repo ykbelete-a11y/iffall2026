@@ -1,0 +1,134 @@
+/* ===== Ravens colors =====
+   Purple: #241773   Gold:       #9e7c0c
+   Black:  #000000   Light gold: #d4af37
+   Lavender (light background): #f3f0fa
+*/
+
+/* ===== Base ===== */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Archivo Narrow', sans-serif;
+  font-size: 18px;
+  line-height: 1.4;
+  color: #241773;              /* Ravens purple */
+  background-color: #ffffff;
+}
+
+h1, h2, h3, p {
+  margin: 0;
+}
+
+/* Every panel shares these */
+.panel {
+  box-sizing: border-box;
+  padding-top: 40px;
+}
+
+/* 960px centered column used by every panel */
+.container {
+  width: 960px;
+  margin: 0 auto;
+}
+
+h2 {
+  font-size: 40px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 30px;
+  color: #9e7c0c;              /* gold section titles */
+}
+
+/* ===== Panel 1: Intro (480px tall) ===== */
+.intro {
+  height: 480px;
+  padding-top: 166px;
+  text-align: center;
+  background: #24145f url("../images/hero.jpg") center / cover no-repeat;
+  color: #ffffff;
+}
+
+.intro h1 {
+  font-size: 80px;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 11px;
+}
+
+.intro .subheading {
+  font-size: 30px;
+  font-weight: 700;
+  color: #d4af37;              /* light gold */
+}
+
+/* ===== Panel 2: Feature text + floated photo (718px tall) ===== */
+.feature {
+  height: 718px;
+  background-color: #f3f0fa;   /* light lavender */
+}
+
+.feature-photo {
+  float: right;
+  border: 1px solid #9e7c0c;   /* gold frame */
+  margin: 0 0 30px 40px;
+}
+
+.feature p {
+  margin-bottom: 16px;
+}
+
+/* ===== Panel 3: Photo grid (688px tall) ===== */
+.gallery {
+  height: 688px;
+  background-color: #ffffff;
+}
+
+.grid {
+  overflow: hidden;            /* contains the floats */
+}
+
+.item {
+  float: left;
+  width: 440px;                /* 440 + 40 gap = 480; two columns = 960px */
+  height: 150px;
+  margin-right: 40px;
+  margin-bottom: 24px;
+}
+
+.item img {
+  float: left;
+  margin-right: 12px;
+}
+
+.item h3 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: #9e7c0c;              /* gold photo titles */
+}
+
+/* ===== Panel 4: Centered statement (408px tall) ===== */
+.statement {
+  height: 408px;
+  background-color: #241773;   /* purple panel */
+  color: #ffffff;
+}
+
+.statement h2 {
+  margin-bottom: 28px;
+  color: #d4af37;              /* light gold on purple */
+}
+
+.statement p {
+  width: 704px;
+  margin: 0 auto;
+  font-size: 26px;
+  text-align: center;
+}
+
+/* ===== Panel 5: Footer (105px tall) ===== */
+.footer {
+  height: 105px;
+  background-color: #000000;
+  color: #d4af37;
+}
