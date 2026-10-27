@@ -1,0 +1,290 @@
+body {
+  color: #333;
+  font-family: 'Open Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  margin: 40px;
+}
+
+h1 {
+  font-size: 30px;
+  margin-bottom: 40px;
+}
+
+.button_container {
+  border: 1px solid #ddd;
+  margin: 0 10px 10px 0;
+  padding: 20px;
+  width: 300px;
+  height: 300px;
+  float: left;
+  overflow: hidden;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+a#btn_spotify {
+  display: inline-block;
+  height: 50px;
+  box-sizing: border-box;
+  border-radius: 25px;
+  margin: auto;
+  margin-top: 100px;
+  padding: 10px 40px 0 40px;
+  background-color: #2ebd59;
+  border: 2px solid #2ebd59;
+  color: #fff;
+  font-size: 20px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  text-decoration: none;
+  transition: all .5s;
+}
+
+a#btn_spotify:hover {
+  background-color: #fff;
+  border: 2px solid #000;
+  color: #000;
+}
+
+a#btn_amazon {
+  display: block;
+  width: 100px;
+  height: 100px;
+  box-sizing: border-box;
+  border-radius: 50px;
+  margin: auto;
+  margin-top: 75px;
+  padding-top: 8px;
+  background-color: #232f3e;
+  color: #fff;
+  text-align: center;
+  font-size: 60px;
+  transition: all .2s;
+}
+
+a#btn_amazon:hover {
+  background-color: #fc9a18;
+}
+
+a#btn_twitter {
+  display: inline-block;
+  height: 40px;
+  box-sizing: border-box;
+  border-radius: 4px;
+  margin: auto;
+  margin-top: 105px;
+  padding: 10px 30px 0 30px;
+  background-color: #56cdf1;
+  color: #fff;
+  font-size: 18px;
+  font-family: 'Arial', sans-serif;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+a#btn_twitter:hover {
+  background: linear-gradient(135deg, rgba(46,191,236,1) 0%, rgba(40,165,203,1) 100%);
+}
+
+a#btn_indiegogo {
+  display: inline-block;
+  position: relative;
+  margin: auto;
+  margin-top: 100px;
+  padding: 8px 16px;
+  background-color: #fff;
+  color: #eb1478;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 30px;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: -2px;
+  transition: all .2s;
+}
+
+a#btn_indiegogo:before {
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  z-index: 1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background-color: #eb1478;
+  transition: all .5s;
+}
+
+a#btn_indiegogo:hover {
+  color: #fff;
+}
+
+a#btn_indiegogo:hover:before {
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+
+a#btn_indiegogo span {
+  position: relative;
+  z-index: 10;
+}
+
+a#btn_nike {
+  display: inline-block;
+  margin-top: 105px;
+  padding: 12px 34px;
+  background-color: #111;
+  color: #fff;
+  font-family: 'Anton', sans-serif;
+  font-size: 28px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  transform: skewX(-12deg);
+  transition: all .3s;
+}
+
+a#btn_nike span {
+  display: inline-block;
+  transform: skewX(12deg);
+}
+
+a#btn_nike:hover {
+  background-color: #ceff00;
+  color: #111;
+  transform: skewX(-12deg) translateX(10px);
+  box-shadow: -8px 0 0 #111, -16px 0 0 #666, -24px 0 0 #bbb;
+}
+
+a#btn_nike:active {
+  transform: skewX(-12deg) translateX(16px) scale(.95);
+}
+
+a#btn_mobot {
+  display: inline-block;
+  margin-top: 105px;
+  padding: 14px 28px;
+  background-color: #f4efe1;
+  border: 2px solid #3e6b3a;
+  border-radius: 0 30px 0 30px;
+  color: #3e6b3a;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all .4s ease;
+}
+
+a#btn_mobot i {
+  margin-right: 10px;
+  transition: all .4s ease;
+}
+
+a#btn_mobot:hover {
+  background-color: #3e6b3a;
+  color: #f4efe1;
+  border-radius: 30px 0 30px 0;
+}
+
+a#btn_mobot:hover i {
+  color: #b7d77a;
+  transform: rotate(-30deg) scale(1.2);
+}
+
+a#btn_colorrun {
+  display: inline-block;
+  margin-top: 108px;
+  padding: 14px 34px;
+  border-radius: 40px;
+  background: linear-gradient(90deg, #ff4f9a, #ffb800, #3ddc84, #2fb5ff, #a35cff, #ff4f9a);
+  background-size: 300% 100%;
+  color: #fff;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-shadow: 0 2px 0 rgba(0,0,0,.15);
+  transition: transform .3s, box-shadow .3s;
+}
+
+a#btn_colorrun:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 0 6px rgba(255,79,154,.25), 0 0 0 12px rgba(255,184,0,.2), 0 0 0 18px rgba(47,181,255,.15);
+  animation: colorrun 1.5s linear infinite alternate;
+}
+
+@keyframes colorrun {
+  from { background-position: 0% 50%; }
+  to { background-position: 100% 50%; }
+}
+
+a#btn_kittens {
+  display: inline-block;
+  margin-top: 100px;
+  padding: 10px 26px;
+  background-color: #e8412c;
+  border: 4px solid #111;
+  border-radius: 12px;
+  box-shadow: 6px 6px 0 #111;
+  color: #fff;
+  font-family: 'Bangers', cursive;
+  font-size: 32px;
+  letter-spacing: 2px;
+  text-decoration: none;
+  text-shadow: 2px 2px 0 #111;
+  transition: background-color .2s, color .2s;
+}
+
+a#btn_kittens i {
+  margin-right: 8px;
+}
+
+a#btn_kittens:hover {
+  background-color: #ffcc00;
+  color: #111;
+  text-shadow: none;
+  animation: shake .3s infinite;
+}
+
+a#btn_kittens:active {
+  transform: translate(6px, 6px);
+  box-shadow: 0 0 0 #111;
+  animation: none;
+}
+
+@keyframes shake {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(-4deg); }
+  50% { transform: rotate(0deg); }
+  75% { transform: rotate(4deg); }
+  100% { transform: rotate(0deg); }
+}
+
+a#btn_newyorker {
+  display: inline-block;
+  margin-top: 110px;
+  padding: 10px 20px;
+  border-top: 3px double #111;
+  border-bottom: 3px double #111;
+  color: #111;
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 24px;
+  text-decoration: none;
+  transition: all .4s ease;
+}
+
+a#btn_newyorker:hover {
+  background-color: #111;
+  color: #fff;
+  letter-spacing: 1px;
+}
