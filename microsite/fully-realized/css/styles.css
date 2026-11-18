@@ -1,0 +1,551 @@
+/* ==========================================================
+   Carrying Home: a Do Ho Suh microsite (initial build)
+   Mobile-first. Breakpoints: 640px (tablet), 1024px (desktop)
+   ========================================================== */
+
+/* ---------- 1. Variables ----------
+   Lydia's palettes, lightened after the mockup review
+   ("make colors lighter", "colors look muddy"). */
+:root {
+  --brown: #5A322A;        /* text + headings */
+  --clay: #A9665A;         /* links on hover, numbers */
+  --page: #FBF5F3;         /* lighter than #F5E9E7 */
+  --blush: #F6E6E3;        /* section color: "Every door..." */
+  --sky: #E9EEF2;          /* section color: the cities */
+  --stone: #EDEBE6;        /* image placeholders */
+  --line: rgba(90, 50, 42, 0.25);
+  --muted: #7A5A52;
+
+  --serif: "Cormorant Garamond", Georgia, serif;
+  --sans: "Work Sans", "Helvetica Neue", Arial, sans-serif;
+  --korean: "Noto Serif KR", serif;
+
+  --max: 72rem;
+}
+
+/* ---------- 2. Base ---------- */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: var(--brown);
+  /* very soft gradient, barely visible, like light through fabric */
+  background: var(--page);
+}
+
+img { display: block; max-width: 100%; height: auto; }
+figure { margin: 0; }
+
+/* One rule for every heading: serif, regular weight, never bold or italic.
+   Italic is saved for artwork titles only (.work-title). */
+h1, h2, h3 {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-style: normal;
+  line-height: 1.15;
+  margin: 0 0 1rem;
+}
+h1 { font-size: clamp(2.75rem, 8vw, 5.5rem); }
+h2 { font-size: clamp(1.9rem, 4vw, 2.75rem); }
+h3 { font-size: 1.5rem; }
+
+p { margin: 0 0 1.1rem; max-width: 38rem; text-wrap: pretty; }
+h1, h2, h3, .statement, .about-intro { text-wrap: balance; }
+
+a { color: var(--brown); text-underline-offset: 0.25em; }
+a:hover { color: var(--clay); }
+:focus-visible { outline: 2px solid var(--clay); outline-offset: 3px; }
+
+.work-title { font-family: var(--serif); }
+.korean { font-family: var(--korean); }
+
+/* Small, spaced-out uppercase labels (year, materials, dates) */
+.label {
+  font-family: var(--sans);
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Text link with an arrow: "See all works →" */
+.arrow-link {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+.arrow-link::after {
+  content: " \2192";
+  display: inline-block;
+  transition: transform 0.2s;
+}
+.arrow-link:hover::after { transform: translateX(4px); }
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: var(--brown);
+  color: var(--page);
+  z-index: 100;
+}
+.skip-link:focus { left: 0.5rem; }
+
+/* The same side margins for text AND images, so everything lines up */
+.wrap {
+  width: min(100% - 2.5rem, var(--max));
+  margin-inline: auto;
+}
+
+section { padding-block: 3.5rem; }
+
+/* Sections that get their own background color */
+.band { padding-block: 4rem; }
+.band--blush { background: var(--blush); }
+.band--sky { background: var(--sky); }
+
+/* ---------- 3. Header + navigation ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--page);
+  border-bottom: 1px solid var(--line);
+}
+.header-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: 0.9rem;
+}
+.site-title {
+  font-family: var(--serif);
+  font-size: 1.4rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+.nav-toggle {
+  font: inherit;
+  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--brown);
+  background: none;
+  border: 1px solid var(--line);
+  padding: 0.45rem 0.9rem;
+  cursor: pointer;
+}
+.site-nav { display: none; flex-basis: 100%; }
+.site-nav.is-open { display: block; }
+.site-nav ul { list-style: none; margin: 0; padding: 0.75rem 0 0.25rem; }
+.site-nav a {
+  display: block;
+  padding: 0.5rem 0;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+.site-nav a[aria-current="page"] { color: var(--clay); }
+
+/* ---------- 4. Hero (shorter than the mockup) ---------- */
+.hero { padding-top: 1.5rem; padding-bottom: 3.5rem; }
+.hero-image {
+  position: relative;
+}
+.hero-image img {
+  width: 100%;
+  height: clamp(16rem, 52vh, 34rem);
+  object-fit: cover;
+}
+.kr-vertical {
+  position: absolute;
+  top: 1.25rem;
+  left: 1.25rem;
+  writing-mode: vertical-rl;
+  letter-spacing: 0.3em;
+  font-size: 1.1rem;
+  color: var(--page);
+}
+.hero-text { padding-top: 2rem; }
+.hero-text h1 { margin-bottom: 0.75rem; }
+.hero-text p { font-size: 1.15rem; }
+
+/* ---------- 5. Images + captions underneath ---------- */
+.photo img,
+.placeholder {
+  width: 100%;
+  /* about 1.5 photos per screen */
+  height: clamp(14rem, 62vh, 40rem);
+  object-fit: cover;
+}
+.placeholder {
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+  text-align: center;
+  background: var(--stone);
+  border: 1px solid var(--line);
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.placeholder--portrait { height: auto; aspect-ratio: 4 / 5; max-width: 26rem; }
+
+/* Caption sits under the photo, left edge lined up with the photo */
+.photo figcaption {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 1rem;
+  padding-top: 1rem;
+}
+.photo .num {
+  font-family: var(--serif);
+  font-size: 1.75rem;
+  line-height: 1;
+  color: var(--clay);
+}
+.photo .work-title { font-size: 1.5rem; line-height: 1.2; display: block; }
+.photo figcaption p { grid-column: 2; margin: 0.5rem 0 0; font-size: 0.98rem; }
+
+/* Space between photos */
+.photo img.fit-contain { object-fit: contain; background: var(--stone); }
+.photo img.fit-low { object-position: center 75%; }
+
+.photo-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 4.5rem;
+}
+
+.section-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem 2rem;
+  margin-bottom: 2rem;
+}
+.section-head h2 { margin: 0; }
+
+/* ---------- 6. "Every door..." intro section ---------- */
+.statement {
+  font-family: var(--serif);
+  font-size: clamp(1.75rem, 3.6vw, 2.6rem);
+  line-height: 1.25;
+  max-width: 34rem;
+}
+.intro-cols { display: grid; gap: 2rem; align-items: start; }
+.floor-plan { width: 100%; max-width: 16rem; height: auto; color: var(--brown); }
+
+/* ---------- 7. The cities (timeline line) ---------- */
+.city-line {
+  list-style: none;
+  margin: 2rem 0 1.5rem;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem 1rem;
+}
+.city-line li {
+  border-top: 1px solid var(--brown);
+  padding-top: 0.75rem;
+  font-family: var(--serif);
+  font-size: 1.35rem;
+}
+
+/* ---------- 8. About the artist ---------- */
+.artist { display: grid; gap: 2rem; align-items: center; }
+.portrait { width: 100%; max-width: 26rem; aspect-ratio: 4 / 5; object-fit: cover; }
+strong, b { font-weight: 500; }
+
+/* ---------- 9. Interior pages ---------- */
+.two-col { display: grid; gap: 2rem; align-items: start; }
+
+.timeline { list-style: none; margin: 2rem 0 0; padding: 0; }
+.timeline li {
+  display: grid;
+  gap: 0.25rem;
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--line);
+}
+.timeline h3 { margin: 0; }
+.timeline .city { color: var(--muted); }
+.timeline p { margin: 0.25rem 0 0; }
+
+.theme-list {
+  list-style: none;
+  margin: 2rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 2rem;
+}
+.theme-list li { border-top: 1px solid var(--brown); padding-top: 1rem; }
+.theme-list h3 { margin-bottom: 0.5rem; }
+
+.plain-list { list-style: none; margin: 1rem 0 0; padding: 0; }
+.plain-list li {
+  display: grid;
+  gap: 0.1rem;
+  padding: 0.9rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.plain-list li:first-child { border-top: 1px solid var(--line); }
+
+.works-index {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.25rem;
+  list-style: none;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  font-size: 0.9rem;
+}
+
+/* Contact form */
+.form { display: grid; gap: 1.25rem; max-width: 34rem; }
+.form label { margin-bottom: 0.35rem; }
+.form input,
+.form textarea {
+  width: 100%;
+  font: inherit;
+  color: var(--brown);
+  background: #fff;
+  border: 1px solid var(--line);
+  padding: 0.75rem;
+}
+.form button {
+  justify-self: start;
+  font: inherit;
+  font-weight: 500;
+  color: var(--page);
+  background: var(--brown);
+  border: 0;
+  padding: 0.8rem 1.6rem;
+  cursor: pointer;
+}
+.form button:hover { background: var(--clay); }
+.form-status { min-height: 1.5rem; }
+
+/* ---------- 10. Page-to-page link + footer ---------- */
+.next-page {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 2rem;
+  border-top: 1px solid var(--line);
+  margin-top: 3rem;
+}
+.next-page a { text-decoration: none; }
+.next-page strong { font-family: var(--serif); font-size: 1.4rem; font-weight: 500; }
+.next-page .next { margin-left: auto; text-align: right; }
+
+
+
+/* ==========================================================
+   Tablet: 640px and up
+   ========================================================== */
+@media (min-width: 640px) {
+  .city-line { grid-template-columns: repeat(5, 1fr); }
+  .theme-list { grid-template-columns: repeat(2, 1fr); gap: 2.5rem; }
+  .timeline li { grid-template-columns: 9rem 1fr; column-gap: 2rem; }
+  .timeline li > .label { padding-top: 0.45rem; }
+}
+
+/* ==========================================================
+   Desktop: 1024px and up
+   ========================================================== */
+@media (min-width: 1024px) {
+  section { padding-block: 5rem; }
+  .band { padding-block: 5.5rem; }
+  .hero { padding-top: 2rem; padding-bottom: 4.5rem; }
+
+  .nav-toggle { display: none; }
+  .header-inner { flex-wrap: nowrap; }
+  .site-nav { display: block; flex-basis: auto; }
+  .site-nav ul { display: flex; gap: 1.4rem; padding: 0; }
+  .site-nav a { padding: 0.2rem 0; font-size: 0.7rem; }
+  .site-nav a:hover,
+  .site-nav a[aria-current="page"] { border-bottom-color: currentColor; }
+
+  .intro-cols { grid-template-columns: 1.2fr 1fr; gap: 5rem; align-items: start; }
+  .intro-cols .statement { margin: 0; }
+  .intro-cols p:last-child { margin-bottom: 0; }
+  .two-col { grid-template-columns: 1fr 1fr; gap: 4rem; }
+  .artist { grid-template-columns: minmax(0, 24rem) 1fr; gap: 4rem; }
+  .photo-list { gap: 6rem; }
+}
+
+/* ==========================================================
+   Added for the fully-realized build
+   ========================================================== */
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-block;
+  padding: 0.85rem 1.6rem;
+  border: 1px solid var(--brown);
+  background: var(--brown);
+  color: var(--page);
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+.btn:hover,
+.btn:focus-visible { background: var(--page); color: var(--brown); }
+.btn--ghost { background: transparent; color: var(--brown); }
+.btn--ghost:hover,
+.btn--ghost:focus-visible { background: var(--brown); color: var(--page); }
+.btn-row { margin-top: 3rem; text-align: center; }
+
+/* ---------- Image overlay: darker image + text on hover / tap ---------- */
+.overlay-wrap {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  text-align: left;
+  overflow: hidden;
+  cursor: pointer;
+  color: inherit;
+  text-decoration: none;
+}
+.overlay-wrap img { transition: transform 0.5s ease; }
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.5rem;
+  background: rgba(40, 22, 18, 0.62);
+  color: #FBF5F3;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+.overlay p { margin: 0; max-width: 30rem; font-size: 1rem; }
+.overlay .overlay-cue {
+  margin-top: 1rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #E8CFC9;
+}
+.overlay-wrap:hover .overlay,
+.overlay-wrap:focus-visible .overlay,
+.overlay-wrap.is-open .overlay { opacity: 1; }
+.overlay-wrap:hover img,
+.overlay-wrap:focus-visible img,
+.overlay-wrap.is-open img { transform: scale(1.03); }
+
+.hint {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.5rem 0.9rem;
+  border: 1px solid var(--line);
+  font-size: 0.85rem;
+}
+
+/* ---------- Works page: two-column grid (different from home) ---------- */
+.works-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 4rem;
+}
+.works-grid .photo img { height: clamp(14rem, 48vh, 30rem); }
+
+/* ---------- Exhibitions page: alternating rows ---------- */
+.show-row { display: grid; gap: 1.5rem; align-items: center; }
+.show-row + .show-row { margin-top: 4.5rem; }
+.show-row img { width: 100%; height: clamp(14rem, 50vh, 30rem); object-fit: cover; }
+.show-row .label { margin-bottom: 0.5rem; }
+.show-row .caption { margin-top: 0.6rem; font-size: 0.85rem; color: var(--muted); }
+
+/* ---------- About page: portrait beside the story ---------- */
+.about-layout { display: grid; gap: 2.5rem; align-items: start; }
+.about-intro { font-family: var(--serif); font-size: clamp(1.5rem, 3vw, 2.1rem); line-height: 1.3; max-width: 46rem; }
+.story h2 { margin-top: 3rem; }
+.story h2:first-child { margin-top: 0; }
+
+/* ---------- Footer (exhibition-site style) ---------- */
+.site-footer {
+  margin-top: 0;
+  padding-block: 4rem 2rem;
+  background: var(--brown);
+  color: var(--page);
+  font-size: 0.95rem;
+}
+.site-footer a { color: var(--page); }
+.site-footer a:hover { color: #F2C9C2; }
+.footer-title {
+  font-family: var(--serif);
+  white-space: nowrap;
+  font-size: clamp(2rem, 3.6vw, 2.75rem);
+  line-height: 1;
+  margin: 0 0 1rem;
+}
+.footer-cols { display: grid; gap: 2.5rem; }
+.footer-tag { max-width: 19rem; margin: 0; }
+.footer-cols h2 {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  color: #E8CFC9;
+}
+.footer-cols ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; }
+.footer-cols ul a { text-decoration: none; }
+.footer-cols ul a:hover { text-decoration: underline; }
+.footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 3.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(251, 245, 243, 0.25);
+  font-size: 0.85rem;
+  color: #E8CFC9;
+}
+.footer-bottom p { margin: 0; }
+
+@media (min-width: 640px) {
+  .footer-cols { grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 3rem; }
+  .works-grid { grid-template-columns: 1fr 1fr; column-gap: 2.5rem; row-gap: 5rem; }
+  /* stagger every other card so the grid feels less boxy */
+  .works-grid > li:nth-child(even) { margin-top: 6rem; }
+}
+
+@media (min-width: 900px) {
+  .show-row { grid-template-columns: 1.3fr 1fr; gap: 3.5rem; }
+  .show-row--flip > :first-child { order: 2; }
+  .about-layout { grid-template-columns: 1fr 1fr; gap: 5rem; }
+  .about-layout .story { position: sticky; top: 6rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
